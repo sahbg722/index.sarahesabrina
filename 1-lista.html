@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Dinâmica</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        ul { padding-left: 20px; }
+        li { margin: 5px 0; }
+        button { margin-left: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Adicione itens à lista:</h1>
+    <input type="text" id="item" placeholder="Digite um item">
+    <button id="adicionar">Adicionar</button>
+
+    <ul id="lista"></ul>
+
+    <script>
+        const lista = [];
+
+        document.getElementById('adicionar').addEventListener('click', adicionarItem);
+        document.getElementById('item').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                adicionarItem();
+            }
+        });
+
+        function adicionarItem() {
+            const itemInput = document.getElementById('item');
+            const item = itemInput.value.trim();
+
+            if (item) {
+                lista.push(item);
+                itemInput.value = '';
+                exibirLista();
+            }
+        }
+
+        function exibirLista() {
+            const listaUl = document.getElementById('lista');
+            listaUl.innerHTML = '';
+
+            lista.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                listaUl.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
